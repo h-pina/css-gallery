@@ -1,0 +1,73 @@
+@property --autoRotation {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+body {
+  background-color: rgb(12, 12, 12);
+}
+
+.cards {
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card {
+  width: 350px;
+  height: 623px;
+  background-image: url("https://images.unsplash.com/photo-1506383631675-0b110111327b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80");
+  background-position: center;
+  background-size: cover;
+  transition: all 1s ease;
+}
+
+.card::before {
+  content: " ";
+  border-radius: 10px;
+  display: block;
+  width: 104%;
+  height: 102%;
+  background: linear-gradient(
+    var(--rotation),
+    rgb(40, 26, 243) 0%,
+    rgba(16, 57, 165, 1) 32%,
+    rgba(0, 254, 255, 1) 100%
+  );
+  position: relative;
+  z-index: -1;
+  right: 2%;
+  bottom: 1%;
+}
+
+.card:hover {
+  width: 380px;
+  height: 653px;
+}
+
+.card:hover::before {
+  filter: blur(4px);
+  background: linear-gradient(
+    var(--autoRotation),
+    rgb(40, 26, 243) 0%,
+    rgba(16, 57, 165, 1) 32%,
+    rgba(0, 254, 255, 1) 100%
+  );
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    --autoRotation: 0deg;
+  }
+
+  to {
+    --autoRotation: 360deg;
+  }
+}
